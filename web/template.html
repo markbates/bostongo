@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walker - File Ranger</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        body {
+            margin-top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Walker - File Ranger</h1>
+        <div>
+            <form action="/">
+                <div>
+                    <input type="text" name="walkPath" id="walkPath" value="{{.WalkPath}}">
+                </div>
+                <div>
+                    <input type="checkbox" name="printDirs" id="printDirs" {{.PrintDirs}}>
+                    <label for="printDirs">Print directories</label>
+                    <input type="checkbox" name="skipFiles" id="skipFiles" {{.SkipFiles}}>
+                    <label for="skipFiles">Skip files</label>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <div>
+            <h2>Results</h2>
+            <div>
+                <pre>{{.Results}}</pre>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

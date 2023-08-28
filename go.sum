@@ -1,0 +1,16 @@
+github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
+github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/markbates/garlic v0.0.0-20230114180117-2dc132acb41e h1:Iq1xGoj427D6efggc+47p4Hk6SuJo4dh4SM6N3ZRIEo=
+github.com/markbates/garlic v0.0.0-20230114180117-2dc132acb41e/go.mod h1:k4nxVa4o0HPTVgFiL6IZV8JAfJP9xXqxOkbzEZWO+oQ=
+github.com/markbates/iox v0.0.0-20230819160100-ccd414706a8d h1:Jbqka72G1uPFsNxNSL6pwO4qh7+8oODGIxPu25yNTYM=
+github.com/markbates/iox v0.0.0-20230819160100-ccd414706a8d/go.mod h1:q+P6BLqC21cbcmL82OdIO3A9VFCjq9fRQ+ije7T85ow=
+github.com/markbates/plugins v0.0.0-20221111052550-17c0f5661590 h1:hQygVai9V0ue6tQatVrlHPxhikHXr5p//8FMXBGI5jY=
+github.com/markbates/plugins v0.0.0-20221111052550-17c0f5661590/go.mod h1:sW8lOXIwFRLa6PHo1sgWlVohCtYt1v+ZtgVPKM6fsVQ=
+github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
+github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
+github.com/stretchr/testify v1.8.4 h1:CcVxjf3Q8PM0mHUKJCdn+eZZtm5yQwehR5yeSVQQcUk=
+github.com/stretchr/testify v1.8.4/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
+gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
+gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
+gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
+gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
