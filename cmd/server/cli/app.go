@@ -20,10 +20,6 @@ type App struct {
 	// IO to be used by the app
 	iox.IO
 
-	// Env to be used by the app
-	// If nil, os.Getenv will be used.
-	*Env
-
 	// Web app to be used by the app
 	web.App
 
@@ -33,6 +29,10 @@ type App struct {
 
 	// Port to listen on. Defaults to 3000.
 	Port int
+
+	// Env to be used by the app
+	// If nil, os.Getenv will be used.
+	*Env
 
 	mu   sync.RWMutex
 	quit chan struct{}
@@ -57,17 +57,19 @@ func (a *App) Main(ctx context.Context, pwd string, args []string) error {
 		return err
 	}
 
-	ctx, cause := context.WithCancelCause(ctx)
+	sctx, cause := context.WithCancelCause(ctx)
 	defer cause(nil)
 
 	srv.BaseContext = func(_ net.Listener) context.Context {
-		return ctx
+		return sctx
 	}
 
 	go func() {
 		<-ctx.Done()
-		ctx, cancel := context.WithTimeout(ctx, 2*time.Second)
+
+		ctx, cancel := context.WithTimeout(sctx, 2*time.Second)
 		defer cancel()
+
 		cause(srv.Shutdown(ctx))
 
 		a.mu.Lock()
@@ -86,7 +88,7 @@ func (a *App) Main(ctx context.Context, pwd string, args []string) error {
 		cause(err)
 	}
 
-	err = context.Cause(ctx)
+	err = context.Cause(sctx)
 	if err != nil && err != context.Canceled {
 		return err
 	}
@@ -181,6 +183,7 @@ func (a *App) server() (*http.Server, error) {
 		return srv, nil
 	}
 
+	// snippet: port
 	if port == 0 {
 		p := a.Getenv("PORT")
 		pi, _ := strconv.Atoi(p)
@@ -189,6 +192,7 @@ func (a *App) server() (*http.Server, error) {
 		}
 		port = pi
 	}
+	// snippet: port
 
 	srv = &http.Server{
 		Addr: fmt.Sprintf(":%d", port),

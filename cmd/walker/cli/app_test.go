@@ -48,7 +48,7 @@ func Test_App_Main(t *testing.T) {
 			}
 
 			ctx := context.Background()
-			ctx, cause := context.WithTimeout(ctx, 3*time.Second)
+			ctx, cause := context.WithTimeout(ctx, time.Second)
 			defer cause()
 
 			err := app.Main(ctx, root, tc.args)

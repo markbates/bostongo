@@ -61,17 +61,19 @@ func (a *App) Main(ctx context.Context, pwd string, args []string) error {
 		cab = os.DirFS(pwd)
 	}
 
-	ctx, cause := context.WithCancelCause(ctx)
+	sctx, cause := context.WithCancelCause(ctx)
 	defer cause(nil)
 
+	// launch as a goroutine so if it takes too
+	// long we can cancel the command.
 	go func() {
 		err := wk.Walk(cab, oi.Stdout())
 		cause(err)
 	}()
 
-	<-ctx.Done()
+	<-sctx.Done()
 
-	err = context.Cause(ctx)
+	err = context.Cause(sctx)
 	if err != nil && err != context.Canceled {
 		return err
 	}

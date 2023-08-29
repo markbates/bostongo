@@ -5,6 +5,7 @@ import (
 	"io"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"testing"
 	"time"
 
@@ -59,6 +60,8 @@ func Test_App_Main(t *testing.T) {
 
 func Test_App_Getenv(t *testing.T) {
 	t.Parallel()
+
+	os.Setenv("EDITOR", "code")
 
 	tcs := []struct {
 		name string

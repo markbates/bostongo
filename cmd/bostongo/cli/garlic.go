@@ -126,10 +126,11 @@ func main() {
 	defer cancel()
 
 	app := &cli.App{
-		Commands: &cli.Commands{
-			// add your commands here
-		},
+		Commands: &cli.Commands{},
 	}
+
+	// add your commands here
+	// app.Commands.Set("<name>", <Commander>)
 
 	err = app.Main(ctx, pwd, args)
 	if err != nil {

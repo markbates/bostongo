@@ -2,7 +2,6 @@ package cli
 
 import (
 	"context"
-	"errors"
 	"flag"
 	"fmt"
 	"io"
@@ -16,6 +15,7 @@ import (
 
 type App struct {
 	iox.IO
+
 	Commands *Commands
 
 	mu sync.RWMutex
@@ -41,15 +41,16 @@ func (a *App) Main(ctx context.Context, pwd string, args []string) error {
 
 	if len(args) == 0 {
 		if e := a.Print(a.Stderr()); e != nil {
-			return errors.Join(err, e)
+			return e
 		}
 		return fmt.Errorf("no command given")
 	}
 
+	// snippet: work
 	cmd, ok := cmds.Find(args[0])
 	if !ok {
 		if e := a.Print(a.Stderr()); e != nil {
-			return errors.Join(err, e)
+			return e
 		}
 		return fmt.Errorf("unknown command %q", args[0])
 	}
@@ -59,6 +60,7 @@ func (a *App) Main(ctx context.Context, pwd string, args []string) error {
 	}
 
 	return cmd.Main(ctx, pwd, args[1:])
+	// snippet: work
 }
 
 func (a *App) Print(w io.Writer) error {
@@ -97,8 +99,16 @@ func (a *App) Print(w io.Writer) error {
 	return nil
 }
 
-func (App) PluginName() string {
+func (*App) PluginName() string {
 	return "bostongo"
+}
+
+func (a *App) SetIO(io iox.IO) {
+	if a == nil {
+		return
+	}
+
+	a.IO = io
 }
 
 func (a *App) flags() *flag.FlagSet {

@@ -10,6 +10,7 @@ import (
 	"github.com/markbates/garlic"
 )
 
+// snippet: main
 func main() {
 	args := os.Args[1:]
 
@@ -34,3 +35,5 @@ func main() {
 		log.Fatal(err)
 	}
 }
+
+// snippet: main
